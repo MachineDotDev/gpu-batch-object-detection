@@ -15,19 +15,13 @@ on:
 jobs:
   detect_objects:
     name: Detect Objects
-    runs-on:
-      - machine
-      - gpu=T4
-      - cpu=4
-      - ram=16
-      - architecture=x64
-      - tenancy=${{ inputs.tenancy }}
+    runs-on: machine/id=${{ github.run_id }}-${{ github.run_attempt }}/gpu=T4/cpu=4/ram=16/architecture=x64/tenancy=${{ inputs.tenancy }}
     steps:
 
       - uses: actions/checkout@v4
 
       - name: Set up Python 3.10
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
